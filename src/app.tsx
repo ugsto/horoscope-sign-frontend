@@ -1,5 +1,6 @@
 import React from 'react';
+import {Header} from './components/header';
 
 export function App() {
-    return <h1>My App</h1>;
+	return <Header />;
 }
