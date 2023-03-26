@@ -9,7 +9,7 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderTitle = styled.h1`
-    color: ${({theme}: {theme: Theme}) => theme.colors.text};
+    color: ${({theme}: {theme: Theme}) => theme.colors.textLight};
     font-size: ${({theme}: {theme: Theme}) => theme.fontSize.title};
     text-align: center;
 `;
