@@ -5,7 +5,7 @@ export type KeyValueProperties = {
 	children: any;
 	label: string;
 	className?: string;
-} & React.HTMLAttributes<HTMLParagraphElement>;
+} & React.PropsWithChildren<Record<string, unknown>>;
 
 const Container = styled.p`
     width: 100%;

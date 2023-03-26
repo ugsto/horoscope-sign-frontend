@@ -7,7 +7,7 @@ export type PopupProperties = {
 	onClose: () => void;
 	title: string;
 	width: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & React.PropsWithChildren<Record<string, unknown>>;
 
 const Container = styled.div`
     position: absolute;

@@ -8,13 +8,18 @@ export const theme = {
 		key: '#ffd700',
 
 		popupBackground: '#291b3e',
+		cardBackground: '#291b3e',
 	},
 	fontSize: {
 		title: '2rem',
 		default: '1rem',
+
+		cardTitle: '1.25rem',
 	},
 	sizes: {
 		headerMargin: '1rem',
+
+		cardPadding: '1.25rem',
 
 		popupPadding: '1rem',
 		popupTitleMargin: '0 0 1rem 0',

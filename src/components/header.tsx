@@ -1,7 +1,10 @@
 import React from 'react';
-
 import {type Theme} from '@/styles/theme';
 import styled from 'styled-components';
+
+export type HeaderProperties = {
+	className?: string;
+} & React.PropsWithChildren<Record<string, unknown>>;
 
 const HeaderContainer = styled.header`
     grid-area: header;
@@ -14,9 +17,9 @@ const HeaderTitle = styled.h1`
     text-align: center;
 `;
 
-export function Header() {
+export function Header({className}: HeaderProperties) {
 	return (
-		<HeaderContainer>
+		<HeaderContainer className={className}>
 			<HeaderTitle>Signos do Zodíaco</HeaderTitle>
 		</HeaderContainer>
 	);

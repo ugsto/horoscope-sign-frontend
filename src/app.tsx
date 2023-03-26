@@ -4,6 +4,7 @@ import {Popup} from './components/popup';
 import {KeyValue} from './components/key-value';
 import styled from 'styled-components';
 import {type Theme} from './styles/theme';
+import {Card} from './components/card';
 
 const PopupKeyValue = styled(KeyValue)`
     color: ${({theme}: {theme: Theme}) => theme.colors.textLight};
@@ -23,17 +24,7 @@ export function App() {
 	return (
 		<>
 			<Header />
-			<Popup onClose={() => {}} title='Popup' width='400px'>
-				<PopupKeyValue label='Cor do dia'>
-					{fortune.colorName}
-				</PopupKeyValue>
-				<PopupKeyValue label='Número do dia'>
-					{fortune.number}
-				</PopupKeyValue>
-				<PopupKeyValue label='Horóscopo do dia'>
-					{fortune.event}
-				</PopupKeyValue>
-			</Popup>
+			<Card title='Fortune' />
 		</>
 	);
 }
