@@ -20,6 +20,7 @@ export const theme = {
 		headerMargin: '1rem',
 
 		cardPadding: '1.25rem',
+		cardGap: '0.5rem',
 
 		popupPadding: '1rem',
 		popupTitleMargin: '0 0 1rem 0',

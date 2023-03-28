@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = api => {
+module.exports = (api) => {
     api.cache(true);
 
     const presets = ['@babel/env', '@babel/react', '@babel/preset-typescript'];

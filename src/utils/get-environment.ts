@@ -8,5 +8,5 @@ export function getEnvironment(
 	return process.env[key] ?? defaultValue;
 }
 
-export const isProduction
-    = getEnvironment('NODE_ENV', 'development') === 'production';
+export const isProduction =
+    getEnvironment('NODE_ENV', 'development') === 'production';

@@ -31,11 +31,9 @@ const Content = styled.div<{theme: Theme; width: string}>`
         'blank button';
 
     width: ${({width}: {width: string}) => width};
-    background: ${({theme}: {theme: Theme}) =>
-		theme.colors.popupBackground};
+    background: ${({theme}: {theme: Theme}) => theme.colors.popupBackground};
     border: 1px solid ${({theme}: {theme: Theme}) => theme.colors.primary};
-    border-radius: ${({theme}: {theme: Theme}) =>
-		theme.borderRadius.default};
+    border-radius: ${({theme}: {theme: Theme}) => theme.borderRadius.default};
     box-shadow: ${({theme}: {theme: Theme}) => theme.boxShadow.default};
     padding: ${({theme}: {theme: Theme}) => theme.sizes.popupPadding};
     text-align: center;
