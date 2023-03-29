@@ -3,6 +3,8 @@ import {Card} from './card';
 import {KeyValue} from './key-value';
 import styled from 'styled-components';
 import {type Theme} from '@/styles/theme';
+import {Button} from './button';
+import {type Fortune, getFortune} from '@/services/fortune';
 
 export type CardHoroscopeProperties = {
 	sign: {
@@ -15,6 +17,8 @@ export type CardHoroscopeProperties = {
 		compatibility: string[];
 	};
 	width: number;
+	setFortune: (fortune: Fortune | Error) => void;
+	setIsLoading: (isLoading: boolean) => void;
 } & React.PropsWithChildren<Record<string, unknown>>;
 
 const Container = styled(Card)`
@@ -36,7 +40,21 @@ export function CardHoroscope({
 	sign,
 	width,
 	className,
+	setFortune,
+	setIsLoading,
 }: CardHoroscopeProperties) {
+	async function fetchFortune() {
+		setIsLoading(true);
+
+		try {
+			setFortune(await getFortune(sign.name));
+		} catch (error) {
+			setFortune(error as Error);
+		}
+
+		setIsLoading(false);
+	}
+
 	return (
 		<Container
 			title={`${sign.symbol} ${sign.name}`}
@@ -52,6 +70,7 @@ export function CardHoroscope({
 			<CardKeyValue label="Compatibilidade">
 				{sign.compatibility.join(', ')}
 			</CardKeyValue>
+			<Button onClick={fetchFortune}>Consultar horóscopo</Button>
 		</Container>
 	);
 }

@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import {Button} from './button';
 
 export type PopupProperties = {
-	onClose: () => void;
 	title: string;
-	width: string;
+    isError: boolean;
+	width: number;
+	onClose: () => void;
 } & React.PropsWithChildren<Record<string, unknown>>;
 
 const Container = styled.div`
@@ -22,7 +23,7 @@ const Container = styled.div`
     z-index: 1;
 `;
 
-const Content = styled.div<{theme: Theme; width: string}>`
+const Content = styled.div<{theme: Theme; width: number; isError: string}>`
     display: grid;
     grid-template-columns: 1fr 5rem;
     grid-template-areas:
@@ -30,9 +31,9 @@ const Content = styled.div<{theme: Theme; width: string}>`
         'content content'
         'blank button';
 
-    width: ${({width}: {width: string}) => width};
+    width: ${({width}: {width: number}) => width}px;
     background: ${({theme}: {theme: Theme}) => theme.colors.popupBackground};
-    border: 1px solid ${({theme}: {theme: Theme}) => theme.colors.primary};
+    border: 1px solid ${({theme, isError}: {theme: Theme; isError: string}) => isError === 'true' ? theme.colors.error : theme.colors.primary};
     border-radius: ${({theme}: {theme: Theme}) => theme.borderRadius.default};
     box-shadow: ${({theme}: {theme: Theme}) => theme.boxShadow.default};
     padding: ${({theme}: {theme: Theme}) => theme.sizes.popupPadding};
@@ -62,10 +63,10 @@ const PopupButton = styled(Button)`
     grid-area: button;
 `;
 
-export function Popup({onClose, title, children, width}: PopupProperties) {
+export function Popup({title, isError, width, onClose, children}: PopupProperties) {
 	return (
 		<Container>
-			<Content width={width}>
+			<Content width={width} isError={isError ? 'true' : 'false'}>
 				<Title>{title}</Title>
 				<Section>{children}</Section>
 				<PopupButton onClick={onClose}>Close</PopupButton>

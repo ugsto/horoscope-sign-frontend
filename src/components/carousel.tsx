@@ -15,14 +15,14 @@ const Container = styled.div`
 `;
 
 const CardContainer = styled.div<{
-	isActive: boolean;
+	isactive: string;
 	absDiff: number;
 	diff: number;
 }>`
     display: ${({absDiff}: {absDiff: number}) =>
 		absDiff > 1 ? 'none' : 'flex'};
-    position: ${({isActive}: {isActive: boolean}) =>
-		isActive ? 'initial' : 'absolute'};
+    position: ${({isactive}: {isactive: string}) =>
+		isactive === 'true' ? 'initial' : 'absolute'};
     filter: blur(${({absDiff}: {absDiff: number}) => absDiff}rem);
     transition: all 0.3s ease-out;
     transform: translateX(calc(${({diff}: {diff: number}) => diff} * -5rem))
@@ -30,19 +30,19 @@ const CardContainer = styled.div<{
 `;
 
 const LeftButton = styled(FaChevronLeft)`
-    opacity: ${({isActive}: {isActive: boolean}) => (isActive ? 0 : 1)};
+    opacity: ${({isactive}: {isactive: string}) => (isactive === 'true' ? 0 : 1)};
     font-size: 2rem;
     color: #fff;
-    cursor: ${({isActive}: {isActive: boolean}) =>
-		isActive ? 'inherit' : 'pointer'};
+    cursor: ${({isactive}: {isactive: string}) =>
+		isactive === 'true' ? 'inherit' : 'pointer'};
 `;
 
 const RightButton = styled(FaChevronRight)`
-    opacity: ${({isActive}: {isActive: boolean}) => (isActive ? 0 : 1)};
+    opacity: ${({isactive}: {isactive: string}) => (isactive === 'true' ? 0 : 1)};
     font-size: 2rem;
     color: #fff;
-    cursor: ${({isActive}: {isActive: boolean}) =>
-		isActive ? 'inherit' : 'pointer'};
+    cursor: ${({isactive}: {isactive: string}) =>
+		isactive === 'true' ? 'inherit' : 'pointer'};
 `;
 
 export function Carousel({children}: CarouselProperties) {
@@ -55,12 +55,12 @@ export function Carousel({children}: CarouselProperties) {
 					onClick={() => {
 						setActive(oldValue => Math.max(oldValue - 1, 0));
 					}}
-					isActive={active === 0}
+					isactive={active === 0 ? 'true' : 'false'}
 				/>
 			}
 			{React.Children.map(children, (child, index) => (
 				<CardContainer
-					isActive={active === index}
+					isactive={active === index ? 'true' : 'false'}
 					absDiff={Math.abs(active - index)}
 					diff={active - index}
 				>
@@ -77,7 +77,7 @@ export function Carousel({children}: CarouselProperties) {
 							),
 						);
 					}}
-					isActive={active === React.Children.count(children) - 1}
+					isactive={active === React.Children.count(children) - 1 ? 'true' : 'false'}
 				/>
 			}
 		</Container>

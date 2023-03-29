@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {CardHoroscope} from './card-horoscope';
 import styled from 'styled-components';
 import {Carousel} from './carousel';
+import {type Fortune} from '@/services/fortune';
+import {Popup} from './popup';
+import {KeyValue} from './key-value';
+import {Orb} from './orb';
+import {Loading} from './loading';
+import {type Theme} from '@/styles/theme';
 
 export const signs = [
 	{
@@ -130,22 +136,82 @@ export const signs = [
 ];
 
 const Container = styled.main`
+    grid-area: main;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+`;
+
+const PopupKeyValue = styled(KeyValue)`
+    color: ${({theme}: {theme: Theme}) => theme.colors.textLight};
+
+    & > span {
+        color: ${({theme}: {theme: Theme}) => theme.colors.key};
+    }
 `;
 
 export function Main() {
+	const [fortune, setFortune] = useState<Fortune | Error | undefined>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	let popup;
+	if (fortune instanceof Error) {
+		popup = (
+			<Popup
+				title="Error"
+				isError={true}
+				width={300}
+				onClose={() => {
+					setFortune(undefined); // eslint-disable-line unicorn/no-useless-undefined
+				}}
+			>
+				<KeyValue label="Motivo">{fortune.message}</KeyValue>
+			</Popup>
+		);
+	} else if (fortune !== undefined) {
+		popup = (
+			<Popup
+				title="Horóscopo"
+				isError={false}
+				width={300}
+				onClose={() => {
+					setFortune(undefined); // eslint-disable-line unicorn/no-useless-undefined
+				}}
+			>
+				<Orb
+					color={fortune.colorHex}
+					width={20}
+					style={{margin: '0 auto 1rem auto'}}
+				/>
+
+				<PopupKeyValue label="Cor">{fortune.colorName}</PopupKeyValue>
+				<PopupKeyValue label="Número">{fortune.number}</PopupKeyValue>
+				<PopupKeyValue label="Evento">{fortune.event}</PopupKeyValue>
+			</Popup>
+		);
+	}
+
 	return (
-		<Container>
-			<Carousel maxVisibility={3} transitionTime={5000}>
-				{signs.map(sign => (
-					<CardHoroscope key={sign.name} sign={sign} width={300} />
-				))}
-			</Carousel>
-		</Container>
+		<>
+			{popup}
+			{isLoading && <Loading />}
+			<Container>
+				<Carousel maxVisibility={3} transitionTime={5000}>
+					{signs.map(sign => (
+						<CardHoroscope
+							key={sign.name}
+							sign={sign}
+							width={300}
+							setFortune={setFortune}
+							setIsLoading={setIsLoading}
+						/>
+					))}
+				</Carousel>
+			</Container>
+		</>
 	);
 }
