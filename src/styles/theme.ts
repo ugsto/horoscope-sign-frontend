@@ -10,6 +10,7 @@ export const theme = {
 
 		popupBackground: '#291b3e',
 		cardBackground: '#291b3e',
+		footerBackground: '#291b3e',
 	},
 	fontSize: {
 		title: '2rem',
