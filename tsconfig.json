@@ -10,7 +10,8 @@
         "moduleResolution": "node",
         "baseUrl": "./",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "@public/*": ["public/*"]
         },
         "typeRoots": ["@types"],
         "resolveJsonModule": true,
