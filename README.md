@@ -1,8 +1,11 @@
 # Sign
 
 This application is a frontend for a simple sign horoscope generator. For
-information on the backend, see [sign API](placeholder). The frontend is
-written in React and uses the [sign API](placeholder) to generate horoscopes.
+information on the backend, see
+[sign API](https://github.com/ugsto/horoscope-sign-backend). The frontend is
+written in React and uses the
+[sign API](https://github.com/ugsto/horoscope-sign-backend) to generate
+horoscopes.
 
 ## Configuration
 
