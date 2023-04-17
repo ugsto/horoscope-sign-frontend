@@ -39,6 +39,7 @@ const Authors = styled.div`
 
 const StyledAuthor = styled(Author)`
     color: ${({theme}: {theme: Theme}) => theme.colors.textLight};
+    font-size: 0.8rem;
 
     & > a {
         color: ${({theme}: {theme: Theme}) => theme.colors.textLight};

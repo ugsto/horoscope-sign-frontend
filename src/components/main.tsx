@@ -8,6 +8,7 @@ import {KeyValue} from './key-value';
 import {Orb} from './orb';
 import {Loading} from './loading';
 import {type Theme} from '@/styles/theme';
+import {BlinkingStars} from './blinking-stars';
 
 export const signs = [
 	{
@@ -211,6 +212,7 @@ export function Main() {
 						/>
 					))}
 				</Carousel>
+				<BlinkingStars numberOfStars={100} />
 			</Container>
 		</>
 	);
