@@ -74,3 +74,7 @@ at http://localhost:3000.
 The application is a simple frontend for the sign API. It allows you to
 generate horoscopes for a given sign and date. The application is available at
 https://localhost:8443 after running the application in production mode.
+
+In order to generate a horoscope, you will need to select a sign and press the
+"Consultar horóscopo" button. The application will then make a request to the
+sign API and display the horoscope.
