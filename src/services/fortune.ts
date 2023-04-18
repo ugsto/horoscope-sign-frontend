@@ -8,7 +8,10 @@ export type Fortune = {
 	event: string;
 };
 
-const signApiUrl = getEnvironment('API_URL', 'http://localhost:3000');
+const signApiUrl = getEnvironment(
+	'API_URL',
+	'https://horoscope-sign.herokuapp.com',
+);
 const signApiEndpoint = '/api/v1/sign';
 
 export async function getFortune(signName: string) {
