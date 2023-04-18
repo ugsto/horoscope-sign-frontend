@@ -49,7 +49,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
-        publicPath: '/dist',
+        publicPath: '/horoscope-sign-frontend/dist',
         clean: true,
     },
     plugins: [
